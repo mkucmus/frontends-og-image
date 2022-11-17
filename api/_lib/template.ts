@@ -16,7 +16,7 @@ const mono = readFileSync(`${__dirname}/../_fonts/Vera-Mono.woff2`).toString(
   "base64"
 );
 
-function getCss(theme: string, fontSize: string) {
+function getCss(theme: string, fontSize: string, backgroundImageUrl?: string) {
   let background = "white";
   let foreground = "black";
 
@@ -24,6 +24,12 @@ function getCss(theme: string, fontSize: string) {
     background = "black";
     foreground = "white";
   }
+  if (typeof backgroundImageUrl === "string" && backgroundImageUrl !== "") {
+    background = `url(${sanitizeHtml(
+      backgroundImageUrl
+    )}); background-size: cover; background-position: center;`;
+  }
+
   return `
     @font-face {
         font-family: 'Inter';
@@ -109,7 +115,15 @@ function getCss(theme: string, fontSize: string) {
 }
 
 export function getHtml(parsedReq: ParsedRequest) {
-  const { text, theme, fontSize, widths, heights, customImageUrl } = parsedReq;
+  const {
+    text,
+    theme,
+    fontSize,
+    widths,
+    heights,
+    customImageUrl,
+    backgroundImageUrl,
+  } = parsedReq;
   let images = [
     "https://user-images.githubusercontent.com/5596960/192964345-af9ae6ee-88d0-4be7-9edb-e1e787dd2741.png",
   ];
@@ -123,7 +137,7 @@ export function getHtml(parsedReq: ParsedRequest) {
     <title>Generated Image</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        ${getCss(theme, fontSize)}
+        ${getCss(theme, fontSize, backgroundImageUrl)}
     </style>
     <body>
         <div>
