@@ -25,9 +25,7 @@ function getCss(theme: string, fontSize: string, backgroundImageUrl?: string) {
     foreground = "white";
   }
   if (typeof backgroundImageUrl === "string" && backgroundImageUrl !== "") {
-    background = `url(${sanitizeHtml(
-      backgroundImageUrl
-    )}); background-size: cover; background-position: center;`;
+    background = `white; url(${backgroundImageUrl}); background-size: cover; background-position: center;`;
   }
 
   return `
