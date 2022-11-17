@@ -113,7 +113,7 @@ export function getHtml(parsedReq: ParsedRequest) {
   let images = [
     "https://user-images.githubusercontent.com/5596960/192964345-af9ae6ee-88d0-4be7-9edb-e1e787dd2741.png",
   ];
-  if (typeof customImageUrl === "string") {
+  if (typeof customImageUrl === "string" && customImageUrl !== "") {
     images = [customImageUrl];
   }
 
