@@ -25,7 +25,7 @@ function getCss(theme: string, fontSize: string, backgroundImageUrl?: string) {
     foreground = "white";
   }
   if (typeof backgroundImageUrl === "string" && backgroundImageUrl !== "") {
-    background = `white; url(${backgroundImageUrl}); background-size: cover; background-position: center;`;
+    background = `url(${backgroundImageUrl})`;
   }
 
   return `
@@ -52,7 +52,7 @@ function getCss(theme: string, fontSize: string, backgroundImageUrl?: string) {
 
     body {
         background: ${background};
-        background-size: 100px 100px;
+        background-size: cover;
         height: 100vh;
         display: flex;
         text-align: center;
