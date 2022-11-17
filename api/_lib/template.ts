@@ -109,10 +109,14 @@ function getCss(theme: string, fontSize: string) {
 }
 
 export function getHtml(parsedReq: ParsedRequest) {
-  const { text, theme, fontSize, widths, heights } = parsedReq;
-  const images = [
+  const { text, theme, fontSize, widths, heights, customImageUrl } = parsedReq;
+  let images = [
     "https://user-images.githubusercontent.com/5596960/192964345-af9ae6ee-88d0-4be7-9edb-e1e787dd2741.png",
   ];
+  if (customImageUrl) {
+    images = [customImageUrl];
+  }
+
   return `<!DOCTYPE html>
 <html>
     <meta charset="utf-8">
